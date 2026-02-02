@@ -1,119 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Be My Valentine 💖</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: "Segoe UI", sans-serif;
-    }
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
 
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    .container {
-      text-align: center;
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-      position: relative;
-      width: 350px;
-      height: 250px;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif}
 
-    h1 {
-      color: #e63946;
-      margin-bottom: 30px;
-    }
+body{
+  height:100vh;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  transition:background 1.5s ease;
+}
 
-    .buttons {
-      position: relative;
-      height: 80px;
-    }
+/* 💖 Floating Hearts */
+.heart{
+  position:absolute;
+  animation:float 6s linear infinite;
+  opacity:.7;
+}
+@keyframes float{
+  from{transform:translateY(100vh)}
+  to{transform:translateY(-10vh);opacity:0}
+}
 
-    button {
-      padding: 12px 25px;
-      font-size: 16px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
+.container{
+  background:rgba(255,255,255,.95);
+  width:390px;
+  padding:30px;
+  border-radius:25px;
+  box-shadow:0 25px 60px rgba(0,0,0,.25);
+  text-align:center;
+  position:relative;
+  z-index:5;
+}
 
-    #yes {
-      background-color: #38b000;
-      color: white;
-    }
+/* 🖼️ Gallery */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin:20px 0;
+}
+.gallery img{
+  width:100%;
+  height:75px;
+  object-fit:cover;
+  border-radius:12px;
+}
 
-    #yes:hover {
-      transform: scale(1.1);
-    }
+/* Buttons */
+.buttons{position:relative;height:90px}
+button{
+  padding:12px 26px;
+  border-radius:30px;
+  border:none;
+  font-size:16px;
+  cursor:pointer;
+  transition:.3s;
+}
+#yes{background:#38b000;color:#fff}
+#yes:hover{transform:scale(1.1)}
+#no{
+  background:#d00000;
+  color:#fff;
+  position:absolute;
+  right:0;top:0;
+}
 
-    #no {
-      background-color: #d00000;
-      color: white;
-      position: absolute;
-      left: 200px;
-      top: 0;
-    }
+/* 💍 Ring */
+#ring{
+  font-size:60px;
+  display:none;
+  animation:pop 1s ease forwards;
+}
+@keyframes pop{
+  from{transform:scale(0)}
+  to{transform:scale(1)}
+}
 
-    .thank-you {
-      display: none;
-      font-size: 24px;
-      color: #1b4332;
-      font-weight: bold;
-    }
-  </style>
+/* 💌 Love text */
+#loveText{
+  display:none;
+  font-size:16px;
+  color:#fff;
+  margin-top:15px;
+}
+
+/* 🌙 Dark mode after YES */
+.dark{
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+}
+</style>
 </head>
+
 <body>
 
-  <div class="container" id="box">
-    <h1 id="question">Adrija will you be my valentine? 💕</h1>
+<!-- 💕 Floating hearts -->
+<script>
+for(let i=0;i<15;i++){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML=["💖","💘","💕","💗","💞"][Math.floor(Math.random()*5)];
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=20+Math.random()*25+"px";
+  h.style.animationDuration=4+Math.random()*4+"s";
+  document.body.appendChild(h);
+}
+</script>
 
-    <div class="buttons" id="buttons">
-      <button id="yes">Yes 💖</button>
-      <button id="no">No 💔</button>
-    </div>
+<div class="container" id="box">
+  <h2 id="question">Adrija, will you be my Valentine? 💕</h2>
+  <p id="sub">Every moment with you feels like magic ✨</p>
 
-    <div class="thank-you" id="thankYou">
-      Thank you for choosing me Adrija ❤️
-    </div>
+  <!-- 🖼️ ADD YOUR PHOTOS HERE -->
+  <!-- Put images in repo & rename below -->
+  <div class="gallery">
+    <img src="image1.jpg">
+    <img src="image2.jpg">
+    <img src="image3.jpg">
+    <img src="image4.jpg">
+    <img src="image5.jpg">
+    <img src="image6.jpg">
   </div>
 
-  <script>
-    const noBtn = document.getElementById("no");
-    const box = document.getElementById("box");
-    const yesBtn = document.getElementById("yes");
-    const buttons = document.getElementById("buttons");
-    const thankYou = document.getElementById("thankYou");
-    const question = document.getElementById("question");
+  <div class="buttons" id="buttons">
+    <button id="yes">Yes 💖</button>
+    <button id="no">No 💔</button>
+  </div>
 
-    noBtn.addEventListener("mouseover", () => {
-      const boxRect = box.getBoundingClientRect();
-      const maxX = boxRect.width - noBtn.offsetWidth;
-      const maxY = boxRect.height - noBtn.offsetHeight - 80;
+  <div id="ring">💍</div>
+  <div id="loveText"></div>
 
-      const randomX = Math.random() * maxX;
-      const randomY = Math.random() * maxY;
+  <!-- 🎵 Music (add your own mp3 in repo) -->
+  <!-- Replace love.mp3 with your song -->
+  <audio id="music" src="love.mp3"></audio>
+</div>
 
-      noBtn.style.left = `${randomX}px`;
-      noBtn.style.top = `${randomY}px`;
-    });
+<script>
+const no=document.getElementById("no");
+const yes=document.getElementById("yes");
+const box=document.getElementById("box");
+const loveText=document.getElementById("loveText");
+const ring=document.getElementById("ring");
+const music=document.getElementById("music");
 
-    yesBtn.addEventListener("click", () => {
-      question.style.display = "none";
-      buttons.style.display = "none";
-      thankYou.style.display = "block";
-    });
-  </script>
+/* 😈 No button trolling */
+no.addEventListener("mouseover",()=>{
+  const r=box.getBoundingClientRect();
+  no.style.left=Math.random()*(r.width-80)+"px";
+  no.style.top=Math.random()*(r.height-120)+"px";
+});
+
+/* 💖 YES clicked */
+yes.addEventListener("click",()=>{
+  document.body.classList.add("dark");
+  document.getElementById("question").style.display="none";
+  document.getElementById("sub").style.display="none";
+  document.getElementById("buttons").style.display="none";
+
+  ring.style.display="block";
+  loveText.style.display="block";
+  music.play();
+
+  typeText("Thank you for choosing me Adrija ❤️💍\nYou are my today, my tomorrow, and my forever 💖");
+});
+
+/* 💌 Typewriter */
+function typeText(text){
+  let i=0;
+  loveText.innerHTML="";
+  const interval=setInterval(()=>{
+    loveText.innerHTML+=text.charAt(i);
+    i++;
+    if(i>=text.length) clearInterval(interval);
+  },60);
+}
+</script>
 
 </body>
 </html>
