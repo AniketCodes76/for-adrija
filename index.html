@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💖</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      position: relative;
+      width: 350px;
+      height: 250px;
+    }
+
+    h1 {
+      color: #e63946;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 80px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    #yes {
+      background-color: #38b000;
+      color: white;
+    }
+
+    #yes:hover {
+      transform: scale(1.1);
+    }
+
+    #no {
+      background-color: #d00000;
+      color: white;
+      position: absolute;
+      left: 200px;
+      top: 0;
+    }
+
+    .thank-you {
+      display: none;
+      font-size: 24px;
+      color: #1b4332;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="box">
+    <h1 id="question">Adrija will you be my valentine? 💕</h1>
+
+    <div class="buttons" id="buttons">
+      <button id="yes">Yes 💖</button>
+      <button id="no">No 💔</button>
+    </div>
+
+    <div class="thank-you" id="thankYou">
+      Thank you for choosing me Adrija ❤️
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const box = document.getElementById("box");
+    const yesBtn = document.getElementById("yes");
+    const buttons = document.getElementById("buttons");
+    const thankYou = document.getElementById("thankYou");
+    const question = document.getElementById("question");
+
+    noBtn.addEventListener("mouseover", () => {
+      const boxRect = box.getBoundingClientRect();
+      const maxX = boxRect.width - noBtn.offsetWidth;
+      const maxY = boxRect.height - noBtn.offsetHeight - 80;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      question.style.display = "none";
+      buttons.style.display = "none";
+      thankYou.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
